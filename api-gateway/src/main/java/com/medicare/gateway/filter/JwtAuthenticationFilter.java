@@ -23,13 +23,15 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
     private final JwtUtil jwtUtil;
 
-    // Paths that do not require authentication
-    // NOTE: these must match the path as seen by the GATEWAY,
-    // i.e. prefixed with the service name (e.g. /auth-service/auth/login),
-    // not the path as seen inside auth-service itself (/auth/login).
+    // Paths that do not require authentication, as seen by the GATEWAY.
+    // /auth/** is the explicit route; /auth-service/auth/** is the
+    // discovery-locator route for the same endpoints.
     private static final List<String> OPEN_API_ENDPOINTS = List.of(
+            "/auth/login",
+            "/auth/health",
             "/auth-service/auth/login",
             "/auth-service/auth/health",
+            "/actuator",
             "/eureka"
     );
 
