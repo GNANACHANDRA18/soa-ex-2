@@ -16,6 +16,7 @@ services:
       - eureka-server
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET must be set (see .env.example)}
 
   doctor-service:
     build: ./doctor-service
@@ -62,3 +63,4 @@ services:
       - billing-service
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET must be set (see .env.example)}
